@@ -1,0 +1,4 @@
+"rules": {
+    // ... other rules here
+    "import/no-extraneous-dependencies": "off"
+    }
