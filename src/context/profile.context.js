@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  userRef,
+  useState,
+} from "react";
 import { auth, database } from "../misc/firebase";
 
 const ProfileContext = createContext();
@@ -8,15 +14,13 @@ export const ProfileProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-
     let userRef;
 
-   const authUnsub = auth.onAuthStateChanged((authObj) => {
+    const authUnsub = auth.onAuthStateChanged((authObj) => {
       if (authObj) {
-
         userRef = database.ref(`/profiles/${authObj.uid}`);
 
-        userRef.on('value', snap => {
+        userRef.on("value", (snap) => {
           const { name, createdAt } = snap.val();
 
           const data = {
@@ -30,9 +34,8 @@ export const ProfileProvider = ({ children }) => {
           setIsLoading(false);
         });
       } else {
-
-        if(userRef){
-            useRef.off()
+        if (userRef) {
+          userRef.off();
         }
 
         setProfile(null);
@@ -41,16 +44,16 @@ export const ProfileProvider = ({ children }) => {
     });
 
     return () => {
-        authUnsub();
+      authUnsub();
 
-        if(userRef){
-            useRef.off()
-        }
-    }
+      if (userRef) {
+        userRef.off();
+      }
+    };
   }, []);
 
   return (
-    <ProfileContext.Provider value={ {isLoading, profile }}>
+    <ProfileContext.Provider value={{ isLoading, profile }}>
       {children}
     </ProfileContext.Provider>
   );
