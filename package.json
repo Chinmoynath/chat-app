@@ -19,6 +19,7 @@
     "react-scripts": "^4.0.3",
     "rsuite": "^4.10.2",
     "save": "^2.5.0",
+    "timeago-react": "^3.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
