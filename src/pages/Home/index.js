@@ -24,7 +24,7 @@ const Home = () => {
 
           <Switch>
             <Route exact path="/chat/:chatId">
-              <Col>
+              <Col xs={24} md={8} className="h-100">
                 <Chat xs={24} md={16} className="h-100" />
               </Col>
             </Route>

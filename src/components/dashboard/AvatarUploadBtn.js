@@ -101,7 +101,7 @@ const AvatarUploadBtn = () => {
           />
         </label>
 
-        <Modal show={isOpen} onHide={close}>
+        <Modal show={isOpen} onHide={close} >
           <Modal.Header>
             <Modal.Title>Adjust and upload new avatar</Modal.Title>
           </Modal.Header>
