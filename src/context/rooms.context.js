@@ -1,4 +1,4 @@
-import React,{ createContext, useEffect, useState } from "react";
+import React,{ createContext, useContext, useEffect, useState } from "react";
 import { database } from "../misc/firebase";
 import { transformToArrWithId } from "../misc/helpers";
 
@@ -10,9 +10,9 @@ export const RoomsProvider = ({children}) => {
     useEffect(() => {
         const roomListRef = database.ref('rooms');
 
-        roomListRef.on('value', (snap) => {
+        roomListRef.on('value', snap => {
 
-            const data = transformToArrWithId(snap.val())
+            const data = transformToArrWithId(snap.val());
             setRooms(data);
         })
 
@@ -21,5 +21,8 @@ export const RoomsProvider = ({children}) => {
         };
     }, []);
 
-    return <RoomsContext.Provider value={rooms} >{children}</RoomsContext.Provider>
-}
+    return ( <RoomsContext.Provider value={rooms} >{children}</RoomsContext.Provider>
+    );
+};
+
+export const useRooms = () => useContext(RoomsContext);          //helper hook
