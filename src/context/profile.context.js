@@ -27,10 +27,12 @@ export const ProfileProvider = ({ children }) => {
 
   useEffect(() => {
     let userRef;
+    
     let userStatusRef;
 
     const authUnsub = auth.onAuthStateChanged((authObj) => {
       if (authObj) {
+        
         userStatusRef = firebase.database().ref(`/status/${authObj.uid}`);
 
         userRef = database.ref(`/profiles/${authObj.uid}`);
