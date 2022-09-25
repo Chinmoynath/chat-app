@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Alert } from "rsuite";
-import { database } from "../../../misc/firebase";
+import { auth, database } from "../../../misc/firebase";
 import { transformToArrWithId } from "../../../misc/helpers";
 import MessageItem from "./MessageItem";
 
@@ -50,11 +50,13 @@ const Messages = () => {
 
   }, [chatId])
 
+  
+
   return (
     <ul className="msg-list custom-scroll">
       { isChatEmpty && <li>No Messages yet</li> }
       { canShowMessages &&
-        messages.map(msg => <MessageItem key={msg.id} message={msg} handleAdmin={handleAdmin} />) }
+        messages.map(msg => <MessageItem key={msg.id} message={msg} handleAdmin={handleAdmin}  />) }
     </ul>
   );
 };
